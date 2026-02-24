@@ -1107,3 +1107,117 @@ body {
         width: 100%;
     }
 }
+
+/* ===== In-App Browser Overlay ===== */
+.inapp-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10, 10, 26, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: fadeInOverlay 0.4s ease;
+}
+
+.inapp-overlay.active {
+    display: flex;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.inapp-card {
+    background: linear-gradient(135deg, rgba(20, 20, 45, 0.98), rgba(30, 30, 60, 0.98));
+    border: 1px solid rgba(247, 183, 51, 0.35);
+    border-radius: 24px;
+    padding: 36px 28px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(247, 183, 51, 0.1);
+}
+
+.inapp-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 8px 30px rgba(247, 183, 51, 0.4);
+}
+
+.inapp-icon i {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.inapp-title {
+    color: var(--text-white);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.inapp-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.inapp-btn {
+    width: 100%;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 25px rgba(247, 183, 51, 0.4);
+    transition: all 0.3s ease;
+    margin-bottom: 14px;
+}
+
+.inapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(247, 183, 51, 0.5);
+}
+
+.inapp-skip {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+    padding: 4px;
+}
+
+.inapp-skip:hover {
+    color: var(--text-white);
+}

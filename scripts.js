@@ -1,4 +1,68 @@
+// ===== In-App Browser Detection =====
+(function () {
+  const ua = navigator.userAgent || "";
+  const isInAppBrowser =
+    /FBAN|FBAV|FB_IAB|Instagram|Musical\.ly|TikTok|Twitter|Snapchat|LinkedInApp|WhatsApp|Telegram|Pinterest|Line\/|MicroMessenger|GSA\//i.test(
+      ua
+    ) ||
+    // Android WebView in-app generic check
+    (/Android/i.test(ua) && /wv\)/i.test(ua) && /Version\//i.test(ua));
+
+  if (!isInAppBrowser) return;
+
+  const overlay = document.getElementById("inappOverlay");
+  if (!overlay) return;
+  overlay.classList.add("active");
+
+  // زر "افتح في المتصفح"
+  document
+    .getElementById("inappOpenBtn")
+    .addEventListener("click", function () {
+      const url = location.href;
+
+      // محاولة 1: intent:// لأجهزة Android (يعمل على Facebook/Instagram)
+      if (/Android/i.test(ua)) {
+        const intentUrl =
+          "intent://" +
+          url.replace(/^https?:\/\//, "") +
+          "#Intent;scheme=https;action=android.intent.action.VIEW;end";
+        location.href = intentUrl;
+        return;
+      }
+
+      // محاولة 2: window.open (يعمل على بعض المتصفحات)
+      try {
+        window.open(url, "_blank");
+      } catch (e) {}
+
+      // محاولة 3: نسخ الرابط للمستخدم مع تعليمات
+      if (navigator.clipboard) {
+        navigator.clipboard
+          .writeText(url)
+          .then(function () {
+            alert(
+              "📋 تم نسخ الرابط!\nافتح متصفح Chrome أو Safari والصق الرابط لفتح الصفحة."
+            );
+          })
+          .catch(function () {
+            prompt("انسخ الرابط وافتحه في متصفحك:", url);
+          });
+      } else {
+        prompt("انسخ الرابط وافتحه في متصفحك:", url);
+      }
+    });
+
+  // زر "تجاهل والمتابعة"
+  document
+    .getElementById("inappSkipBtn")
+    .addEventListener("click", function () {
+      overlay.classList.remove("active");
+    });
+})();
+
+// ===== Main App =====
 const username = document.getElementById("username-input");
+
 if (InitialState && InitialState?.UserName) {
   username.value = InitialState.UserName;
   document.getElementById("championName").textContent = "test";
