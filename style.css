@@ -271,7 +271,7 @@ body {
 }
 
 .main-title {
-    font-size              : clamp(1.6rem, 5vw, 2.2rem);
+    font-size              : clamp(1.2rem, 5vw, 1.8rem);
     font-weight            : 800;
     background             : linear-gradient(135deg, var(--primary-gold), var(--secondary-gold), var(--primary-gold));
     background-size        : 200% auto;
@@ -922,7 +922,8 @@ body {
 }
 
 .btn-share {
-    padding        : 12px 20px;
+    padding        : 5px 10px;
+    white-space    : nowrap;
     border-radius  : 25px;
     font-size      : 0.9rem;
     font-weight    : 700;

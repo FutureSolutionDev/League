@@ -16,7 +16,7 @@ function SetInitialData() {
   if (Investor) {
     const AllTags = document.querySelectorAll(".investor-name");
     const AllTagsNone = document.querySelectorAll(".investor-name-none");
-    [ ...AllTags, ...AllTagsNone].forEach((tag) => {
+    [...AllTags, ...AllTagsNone].forEach((tag) => {
       tag.textContent = Investor;
     });
   }
@@ -417,6 +417,28 @@ function generateResults() {
             `;
 }
 
+/**
+ * html2canvas لا يدعم linear-gradient مع background-clip: text
+ * الحل: نستخدم onclone لتعديل العناصر في النسخة المؤقتة قبل التصوير فقط
+ */
+function fixGradientTextForCanvas(clonedDoc) {
+  const selectors = [
+    ".main-title",
+    ".results-title",
+    ".investor-container",
+    ".investor-container .investor-name-2",
+  ];
+  selectors.forEach((sel) => {
+    clonedDoc.querySelectorAll(sel).forEach((el) => {
+      el.style.webkitTextFillColor = "";
+      el.style.webkitBackgroundClip = "";
+      el.style.backgroundClip = "";
+      el.style.background = "none";
+      el.style.color = "#F7B733";
+    });
+  });
+}
+
 async function downloadImage() {
   const loading = document.getElementById("loadingOverlay");
   loading.classList.add("active");
@@ -425,9 +447,9 @@ async function downloadImage() {
       document.getElementById("resultsContent"),
       {
         backgroundColor: "#0a0a1a",
-        
         scale: 2,
         useCORS: true,
+        onclone: (clonedDoc) => fixGradientTextForCanvas(clonedDoc),
       }
     );
     const link = document.createElement("a");
@@ -450,6 +472,7 @@ async function shareImage() {
         backgroundColor: "#0a0a1a",
         scale: 2,
         useCORS: true,
+        onclone: (clonedDoc) => fixGradientTextForCanvas(clonedDoc),
       }
     );
     canvas.toBlob(async (blob) => {
