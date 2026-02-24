@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <script>
+        const InitialState = {
+            LeagueName: "بطولة مركز شباب بساط 2026",
+            Investor: "د/ شبعان رأفت",
+            Investor2: "Mohamed ElniGer",
+            Description: `عضو مجلس الشيوخ`,
+            UserName: ""
+        }
+        const LocalUserName = localStorage.getItem("UserName");
+        if (LocalUserName) {
+            InitialState.UserName = LocalUserName;
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        بطولة مركز شباب بساط 2026
+    </title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Background Effects -->
+    <div class="animated-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <h1 class="main-title">
+                بطولة مركز شباب بساط 2026
+            </h1>
+        </header>
+
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <span class="progress-label">
+                    <i class="fas fa-flag-checkered"></i>
+                    <span id="progressLabel">المجموعة الأولى</span>
+                </span>
+                <span class="progress-count" id="progressCount">1 / 8</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 12.5%"></div>
+            </div>
+            <div class="progress-steps">
+                <span class="step-dot active"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+                <span class="step-dot"></span>
+            </div>
+        </div>
+        <!-- Startup Screen -->
+        <div class="screen 
+        
+        active
+        
+        " id="screen-startup">
+            <div class="group-container">
+                <div class="investor-img large"><img src="./logo.png" alt="Investor"></div>
+                <p class="investor-name">
+                    د/ شبعان رأفت
+                </p>
+                <p class="investor-description">عضو مجلس الشيوخ</p>
+                <div class="information">
+                    <label for="username-input" class="form-label">
+                        اسم المشارك
+                    </label>
+                    <input type="text" id="username-input" placeholder="اسم المشارك" class="form-control"
+                        onchange="saveUserName(event)" maxlength="30">
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-primary" id="startup" disabled>
+                        ابدأ البطولة
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="stable">
+                <p class="league-name">
+                    بطولة مركز شباب بساط 2026
+                </p>
+                <p class="investor-name-2">
+                    Mohamed ElniGer
+                </p>
+            </div>
+        </div>
+        <!-- Group A -->
+        <div class="screen" id="screen-groupA">
+            <div class="group-container">
+                <div class="group-badge">
+                    <i class="fas fa-shield-halved"></i>
+                    المجموعة الأولى
+                </div>
+                <div class="teams-list" id="teamsA"></div>
+                <div class="selection-info">
+                    <div class="selection-item">
+                        <div class="selection-icon first">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <span id="firstA">الأول: --</span>
+                    </div>
+                    <div class="selection-item">
+                        <div class="selection-icon second">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <span id="secondA">الثاني: --</span>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevA">
+                        <i class="fas fa-arrow-right"></i>
+                        السابق
+                    </button>
+                    <button class="btn btn-primary" id="nextA" disabled>
+                        التالي
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+
+                </div>
+            </div>
+            <div class="stable">
+                <p class="league-name">
+                    بطولة مركز شباب بساط 2026
+                </p>
+                <p class="investor-name-2">
+                    Mohamed ElniGer
+                </p>
+            </div>
+        </div>
+
+        <!-- Group B -->
+        <div class="screen" id="screen-groupB">
+            <div class="group-container">
+                <div class="group-badge">
+                    <i class="fas fa-shield-halved"></i>
+                    المجموعة الثانية
+                </div>
+                <div class="teams-list" id="teamsB"></div>
+                <div class="selection-info">
+                    <div class="selection-item">
+                        <div class="selection-icon first">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <span id="firstB">الأول: --</span>
+                    </div>
+                    <div class="selection-item">
+                        <div class="selection-icon second">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <span id="secondB">الثاني: --</span>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevB">
+                        <i class="fas fa-arrow-right"></i>
+                        السابق
+                    </button>
+                    <button class="btn btn-primary" id="nextB" disabled>
+                        التالي
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="stable">
+                <p class="league-name">
+                    بطولة مركز شباب بساط 2026
+                </p>
+                <p class="investor-name-2">
+                    Mohamed ElniGer
+                </p>
+            </div>
+        </div>
+
+        <!-- Group C -->
+        <div class="screen" id="screen-groupC">
+            <div class="group-container">
+                <div class="group-badge">
+                    <i class="fas fa-shield-halved"></i>
+                    المجموعة الثالثة
+                </div>
+                <div class="teams-list" id="teamsC"></div>
+                <div class="selection-info">
+                    <div class="selection-item">
+                        <div class="selection-icon first">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <span id="firstC">الأول: --</span>
+                    </div>
+                    <div class="selection-item">
+                        <div class="selection-icon second">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <span id="secondC">الثاني: --</span>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevC">
+                        <i class="fas fa-arrow-right"></i>
+                        السابق
+                    </button>
+                    <button class="btn btn-primary" id="nextC" disabled>
+                        التالي
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="stable">
+                <p class="league-name">
+                    بطولة مركز شباب بساط 2026
+                </p>
+                <p class="investor-name-2">
+                    Mohamed ElniGer
+                </p>
+            </div>
+        </div>
+
+        <!-- Group D -->
+        <div class="screen" id="screen-groupD">
+            <div class="group-container">
+                <div class="group-badge">
+                    <i class="fas fa-shield-halved"></i>
+                    المجموعة الرابعة
+                </div>
+                <div class="teams-list" id="teamsD"></div>
+                <div class="selection-info">
+                    <div class="selection-item">
+                        <div class="selection-icon first">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <span id="firstD">الأول: --</span>
+                    </div>
+                    <div class="selection-item">
+                        <div class="selection-icon second">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <span id="secondD">الثاني: --</span>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevD">
+                        <i class="fas fa-arrow-right"></i>
+                        السابق
+                    </button>
+                    <button class="btn btn-primary" id="nextD" disabled>
+                        دور الثمانية
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="stable">
+                <p class="league-name">
+                    بطولة مركز شباب بساط 2026
+                </p>
+                <p class="investor-name-2">
+                    Mohamed ElniGer
+                </p>
+            </div>
+        </div>
+
+        <!-- Quarter Finals -->
+        <div class="screen" id="screen-quarter">
+            <div class="group-container">
+                <div class="knockout-badge">
+                    <i class="fas fa-futbol"></i>
+                    دور الثمانية
+                </div>
+                <div class="matches-list" id="quarterMatches"></div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevQuarter">
+                        <i class="fas fa-arrow-right"></i>
+                        السابق
+                    </button>
+                    <button class="btn btn-primary" id="nextQuarter" disabled>
+                        نصف النهائي
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="stable">
+                <p class="league-name">
+                    بطولة مركز شباب بساط 2026
+                </p>
+                <p class="investor-name-2">
+                    Mohamed ElniGer
+                </p>
+            </div>
+        </div>
+
+        <!-- Semi Finals -->
+        <div class="screen" id="screen-semi">
+            <div class="group-container">
+                <div class="knockout-badge">
+                    <i class="fas fa-futbol"></i>
+                    نصف النهائي
+                </div>
+                <div class="matches-list" id="semiMatches"></div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevSemi">
+                        <i class="fas fa-arrow-right"></i>
+                        السابق
+                    </button>
+                    <button class="btn btn-primary" id="nextSemi" disabled>
+                        النهائي
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="stable">
+                <p class="league-name">
+                    بطولة مركز شباب بساط 2026
+                </p>
+                <p class="investor-name-2">
+                    Mohamed ElniGer
+                </p>
+            </div>
+        </div>
+
+        <!-- Final -->
+        <div class="screen" id="screen-final">
+            <div class="group-container">
+                <div class="trophy-display">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="knockout-badge final-badge">
+                    <i class="fas fa-crown"></i>
+                    النهائي الكبير
+                </div>
+                <div class="matches-list" id="finalMatch"></div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevFinal">
+                        <i class="fas fa-arrow-right"></i>
+                        السابق
+                    </button>
+                    <button class="btn btn-primary" id="nextFinal" disabled>
+                        عرض النتيجة
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="screen" id="screen-results">
+            <div class="results-card" id="resultsContent">
+                <div class="results-header-container">
+                    <div class="results-header">
+                        <i class="fas fa-trophy"></i>
+                        <h2 class="results-title">توقعاتك للبطولة</h2>
+                    </div>
+                    <div class="investor-img small"><img src="./logo.png" alt="Investor"></div>
+                </div>
+
+                <div class="champion-card">
+                    <p class="champion-label">
+                        <i class="fas fa-crown"></i>
+                        البطل المتوقع
+                    </p>
+                    <h3 class="champion-name" id="championName">--</h3>
+                    <h4 class="champion-label" id="username-preview">--</h4>
+                </div>
+
+                <div class="results-section">
+                    <div class="section-header">
+                        <i class="fas fa-layer-group"></i>
+                        ترتيب المجموعات
+                    </div>
+                    <div class="groups-grid" id="groupsResults"></div>
+                </div>
+
+                <div class="results-section">
+                    <div class="section-header">
+                        <i class="fas fa-bolt"></i>
+                        دور الثمانية
+                    </div>
+                    <div id="quarterResults"></div>
+                </div>
+
+                <div class="results-section">
+                    <div class="section-header">
+                        <i class="fas fa-fire"></i>
+                        نصف النهائي
+                    </div>
+                    <div id="semiResults"></div>
+                </div>
+
+                <div class="results-section">
+                    <div class="section-header">
+                        <i class="fas fa-crown"></i>
+                        النهائي
+                    </div>
+                    <div id="finalResults"></div>
+                </div>
+
+                <div class="stable">
+                    <div class="watermark">
+                        <i class="fas fa-futbol"></i>
+                        <span class="league-name"> بطولة مركز شباب بساط 2026</span>
+                    </div>
+                    <p class="investor-name-2">
+                        Mohamed ElniGer
+                    </p>
+                </div>
+            </div>
+
+            <div class="share-section">
+                <button class="btn-share btn-download" id="btnDownload">
+                    <i class="fas fa-download"></i>
+                    حفظ الصورة
+                </button>
+                <button class="btn-share btn-facebook" id="btnFacebook">
+                    <i class="fas fa-share-nodes"></i>
+                    مشاركة
+                </button>
+                <button class="btn-share btn-restart" id="btnRestart">
+                    <i class="fas fa-rotate-right"></i>
+                    إعادة
+                </button>
+            </div>
+        </div>
+        <div class="app-container-footer">
+
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>
+            <i class="fas fa-code"></i>
+            تم التنفيذ بواسطة
+            <a href="https://futuresolutionsdev.com/" target="_blank">Future Solutions Dev</a>
+        </p>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
