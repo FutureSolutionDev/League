@@ -15,7 +15,8 @@ function SetInitialData() {
   const { LeagueName, Investor, Description, Investor2 } = InitialState || {};
   if (Investor) {
     const AllTags = document.querySelectorAll(".investor-name");
-    AllTags.forEach((tag) => {
+    const AllTagsNone = document.querySelectorAll(".investor-name-none");
+    [ ...AllTags, ...AllTagsNone].forEach((tag) => {
       tag.textContent = Investor;
     });
   }
@@ -27,17 +28,15 @@ function SetInitialData() {
   }
   if (Description) {
     const AllTags = document.querySelectorAll(".investor-description");
-    AllTags.forEach((tag) => {
+    const AllTagsNone = document.querySelectorAll(".investor-description-none");
+    [...AllTags, ...AllTagsNone].forEach((tag) => {
       tag.textContent = Description;
     });
   }
   if (LeagueName) {
     const AllTags = document.querySelectorAll(".main-title");
     const LeagueNameTags = document.querySelectorAll(".league-name");
-    AllTags.forEach((tag) => {
-      tag.textContent = LeagueName;
-    });
-    LeagueNameTags.forEach((tag) => {
+    [...AllTags, ...AllTags].forEach((tag) => {
       tag.textContent = LeagueName;
     });
     document.title = LeagueName;
@@ -368,7 +367,6 @@ function generateResults() {
   const sf = state.semiFinals;
 
   document.getElementById("championName").textContent = state.final.winner;
-
   document.getElementById("groupsResults").innerHTML = ["A", "B", "C", "D"]
     .map(
       (c) => `
@@ -427,6 +425,7 @@ async function downloadImage() {
       document.getElementById("resultsContent"),
       {
         backgroundColor: "#0a0a1a",
+        
         scale: 2,
         useCORS: true,
       }

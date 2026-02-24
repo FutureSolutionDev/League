@@ -32,12 +32,38 @@ body {
     flex-direction: column;
 }
 
+.investor-name-2 {
+    font-weight: 800;
+    color: var(--primary-gold);
+}
+
 /* investor */
+.investor-container {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    gap            : 5px;
+    gap            : 5px;
+    color          : var(--text-white);
+
+    font-size              : clamp(0.9rem, 2vw, 1.2rem);
+    font-weight            : 800;
+    background             : linear-gradient(135deg, var(--primary-gold), var(--secondary-gold), var(--primary-gold));
+    background-size        : 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip        : text;
+    animation              : textShine 3s linear infinite;
+    white-space            : nowrap;
+}
+
 .investor-name,
 .investor-description {
-    color     : var(--text-muted);
-    font-size : 1.5rem;
-    margin-top: 1px;
+    color      : var(--text-muted);
+    font-size  : 2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-top : 15px;
 }
 
 .stable {
@@ -1019,7 +1045,22 @@ body {
     }
 
     .main-title {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+    }
+
+    .investor-img.large {
+        width : 22rem;
+        height: 20rem;
+    }
+
+    .investor-img.small {
+        width : 11rem;
+        height: 10rem;
+    }
+
+    .investor-img img {
+        width : 100%;
+        height: 100%;
     }
 
     .team-card {
