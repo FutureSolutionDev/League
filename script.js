@@ -12,7 +12,14 @@ function saveUserName(e) {
   document.getElementById("startup").disabled = e.target.value ? false : true;
 }
 function SetInitialData() {
-  const { LeagueName, Investor, Description, Investor2 } = InitialState || {};
+  const {
+    LeagueName,
+    Investor,
+    Description,
+    Investor2,
+    Investor3,
+    Supervisor,
+  } = InitialState || {};
   if (Investor) {
     const AllTags = document.querySelectorAll(".investor-name");
     const AllTagsNone = document.querySelectorAll(".investor-name-none");
@@ -24,6 +31,18 @@ function SetInitialData() {
     const AllTags = document.querySelectorAll(".investor-name-2");
     AllTags.forEach((tag) => {
       tag.textContent = Investor2;
+    });
+  }
+  if (Investor3) {
+    const AllTags = document.querySelectorAll(".investor-name-3");
+    AllTags.forEach((tag) => {
+      tag.textContent = Investor3;
+    });
+  }
+  if (Supervisor) {
+    const AllTags = document.querySelectorAll(".supervisor-name");
+    AllTags.forEach((tag) => {
+      tag.textContent = Supervisor;
     });
   }
   if (Description) {
